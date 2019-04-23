@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "sklinkusch-vbbmicro",
+  "alias": "sklinkusch-vbbmicro.now.sh",
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node"
+    }
+  ]
+}
