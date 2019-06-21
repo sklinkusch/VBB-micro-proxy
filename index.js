@@ -10,21 +10,14 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-// enable query to take two parameters
-  const queryArray = query.split(",");
-  let station;
-  let dura;
-  if(queryArray.length === 2){
-    [station, dura] = queryArray;
-  } else {
-    [station] = queryArray;
-    dura = 60;
-  }
+  // enable query to take two parameters
+  const station = query.station;
+  const duration = "duration" in query ? query.duration : 60;
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   if (query) {
     client
-      .departures(station, { duration: dura })
+      .departures(station, { duration: duration })
       .then(data => send(res, 200, data))
       .catch(error => send(res, 500, error));
   } else {
