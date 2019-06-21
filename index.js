@@ -10,9 +10,7 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  // enable query to take two parameters
-  const station = query.station;
-  const duration = "duration" in query ? query.duration : 60;
+  const { station, duration = 60 } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   if (query) {
