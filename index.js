@@ -24,3 +24,13 @@ module.exports = async (req, res) => {
     send(res, 200, '{"result":"No departure provided"}');
   }
 };
+
+const parseQueryString = function(queryString) {
+  const params = {};
+  const queries = queryString.split("&");
+  for (let i = 0; i < queries.length; i++) {
+    const temp = queries[i].split("=");
+    params[temp[0]] = temp[1];
+  }
+  return params;
+};
