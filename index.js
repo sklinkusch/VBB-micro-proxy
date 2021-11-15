@@ -10,14 +10,21 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const { station, duration = 60 } = parseQueryString(query);
+  const { station, duration = 60, mode = "dep" } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   if (query) {
-    client
-      .departures(station, { duration: duration })
-      .then(data => send(res, 200, data))
-      .catch(error => send(res, 500, error));
+    if (mode === "dep") {
+      client
+        .departures(station, { duration: duration })
+        .then(data => send(res, 200, data))
+        .catch(error => send(res, 500, error));
+    } else {
+      client
+        .arrivals(station, { duration: duration })
+        .then(data => send(res, 200, data))
+        .catch(error => send(res, 500, error))
+    }
   } else {
     send(res, 200, '{"result":"No departure provided"}');
   }
