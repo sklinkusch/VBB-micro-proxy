@@ -4,6 +4,8 @@ require("now-env");
 const createClient = require("hafas-client");
 const vbbProfile = require("hafas-client/p/vbb");
 const client = createClient(vbbProfile, "vbbMicro");
+const createHafas = require("vbb-hafas")
+const hafas = createHafas("my-awesome-program")
 
 const { parse } = require("url");
 const { send } = require("micro");
@@ -15,15 +17,23 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   if (query) {
     if (mode === "dep") {
-      client
+      hafas
         .departures(station, { duration: duration })
         .then(data => send(res, 200, data))
-        .catch(error => send(res, 500, error));
+        .catch(error => send(res, 500, error))
+      // client
+      //   .departures(station, { duration: duration })
+      //   .then(data => send(res, 200, data))
+      //   .catch(error => send(res, 500, error));
     } else {
-      client
+      hafas
         .arrivals(station, { duration: duration })
         .then(data => send(res, 200, data))
         .catch(error => send(res, 500, error))
+      // client
+      //   .arrivals(station, { duration: duration })
+      //   .then(data => send(res, 200, data))
+      //   .catch(error => send(res, 500, error))
     }
   } else {
     send(res, 200, '{"result":"No departure provided"}');
