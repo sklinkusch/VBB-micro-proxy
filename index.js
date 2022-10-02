@@ -12,13 +12,18 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const { station, duration = 60, mode = "dep" } = parseQueryString(query);
+  const { station, duration = 60, mode = "dep", language = 'de' } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
+  const options = {
+    duration: duration,
+    remarks: true,
+    language: language
+  }
   if (query) {
     if (mode === "dep") {
       hafas
-        .departures(station, { duration: duration })
+        .departures(station, options)
         .then(data => send(res, 200, data))
         .catch(error => send(res, 500, error))
       // client
@@ -27,7 +32,7 @@ module.exports = async (req, res) => {
       //   .catch(error => send(res, 500, error));
     } else {
       hafas
-        .arrivals(station, { duration: duration })
+        .arrivals(station, options)
         .then(data => send(res, 200, data))
         .catch(error => send(res, 500, error))
       // client
