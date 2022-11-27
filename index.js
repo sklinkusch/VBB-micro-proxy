@@ -20,10 +20,6 @@ module.exports = async (req, res) => {
     remarks: true,
     language: language,
     when: when,
-    subStops: true,
-    entrances: true,
-    stopOvers: true,
-    includeRelatedStations: true
   }
   if (query) {
     if (mode === "dep") {
