@@ -5,8 +5,8 @@
 	"description": "proxy to fetch VBB data without CORS errors",
 	"main": "index.js",
 	"scripts": {
-		"start": "micro -p 3999",
-		"dev": "nodemon --exec 'micro -p 3999' -w index.js"
+		"start": "micro",
+		"dev": "nodemon --exec 'micro -p 3099' -w index.js"
 	},
 	"keywords": [
 		"proxy",

@@ -1,14 +1,14 @@
 require("isomorphic-fetch");
 require("now-env");
 
-const createClient = require("hafas-client");
-const vbbProfile = require("hafas-client/p/vbb");
-const client = createClient(vbbProfile, "vbbMicro");
-const createHafas = require("vbb-hafas")
+// const createClient = require("hafas-client");
+// const vbbProfile = require("hafas-client/p/vbb");
+// const client = createClient(vbbProfile, "vbbMicro");
+const createHafas = import("vbb-hafas")
 const hafas = createHafas("my-awesome-program")
 
-const { parse } = require("url");
-const { send } = require("micro");
+const { parse } = import("url");
+const { send } = import("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
