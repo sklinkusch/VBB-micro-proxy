@@ -12,14 +12,13 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const { station, duration = 60, mode = "dep", language = 'de', when = undefined } = parseQueryString(query);
+  const { station, duration = 60, mode = "dep", language = 'de' } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   const options = {
     duration: duration,
     remarks: true,
     language: language,
-    when: when,
   }
   if (query) {
     if (mode === "dep") {
