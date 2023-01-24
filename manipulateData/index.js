@@ -97,7 +97,7 @@ async function splitArray (data) {
 			return 0
 		})
     const resultArray = await dataModified.reduce(
-			(acc: Dataset[][], curr: any) => {
+			(acc, curr) => {
 				const arr = [...acc]
 				const index = stopsContracted.findIndex(
 					(x) => x.name === curr.stop.name && x.order === curr.order
@@ -116,3 +116,27 @@ async function splitArray (data) {
 		}
   }
 }
+
+const sortCompressedArray = (compressedData) => {
+		return compressedData.sort((a, b) => {
+			const aOrder = a[0].order || undefined
+			const bOrder = b[0].order || undefined
+			const aStop =
+				typeof a[0].stop.name === "string" ? a[0].stop.name.toLowerCase() : ""
+			const bStop =
+				typeof b[0].stop.name === "string" ? b[0].stop.name.toLowerCase() : ""
+			if (typeof aOrder === "number" && typeof bOrder === "undefined") {
+				return -1
+			} else if (typeof aOrder === "undefined" && typeof bOrder === "number") {
+				return +1
+			} else if (typeof aOrder === "number" && typeof bOrder === "number") {
+				return aOrder - bOrder
+			} else if (aStop < bStop) {
+				return -1
+			} else if (bStop < aStop) {
+				return +1
+			} else {
+				return 0
+			}
+		})
+	}
