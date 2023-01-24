@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"name": "sklinkusch-vbbmicro",
-	"alias": "sklinkusch-vbbmicro.now.sh",
+	"alias": "sklinkusch-vbbmicro.vercel.app",
 	"builds": [
 		{
 			"src": "index.js",
