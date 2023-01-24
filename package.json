@@ -5,8 +5,8 @@
 	"description": "proxy to fetch VBB data without CORS errors",
 	"main": "index.js",
 	"scripts": {
-		"start": "micro -p 3999",
-		"dev": "nodemon --exec 'micro -p 3999' -w index.js"
+		"start": "micro",
+		"dev": "nodemon --exec 'micro -p 3001' -w index.js"
 	},
 	"keywords": [
 		"proxy",
@@ -19,7 +19,7 @@
 		"nodemon": "^2.0.19"
 	},
 	"dependencies": {
-		"hafas-client": "latest",
+		"hafas-client": "^6.0.1",
 		"isomorphic-fetch": "^3.0.0",
 		"micro": "^9.3.4",
 		"now-env": "^3.1.0",

@@ -1,9 +1,9 @@
 require("isomorphic-fetch");
 require("now-env");
 
-const createClient = require("hafas-client");
-const vbbProfile = require("hafas-client/p/vbb");
-const client = createClient(vbbProfile, "vbbMicro");
+// const createClient = require("hafas-client");
+// const vbbProfile = require("hafas-client/p/vbb");
+// const client = createClient(vbbProfile, "vbbMicro");
 const createHafas = require("vbb-hafas")
 const hafas = createHafas("my-awesome-program")
 
@@ -12,18 +12,13 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const { station, duration = 60, mode = "dep", language = 'de', when = undefined } = parseQueryString(query);
+  const { station, duration = 60, mode = "dep", language = 'de' } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   const options = {
     duration: duration,
     remarks: true,
     language: language,
-    when: when,
-    subStops: true,
-    entrances: true,
-    stopOvers: true,
-    includeRelatedStations: true
   }
   if (query) {
     if (mode === "dep") {
