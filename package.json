@@ -23,6 +23,6 @@
 		"isomorphic-fetch": "^3.0.0",
 		"micro": "^9.3.4",
 		"now-env": "^3.1.0",
-		"vbb-hafas": "latest"
+		"vbb-hafas": "^8.0.1"
 	}
 }
