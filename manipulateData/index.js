@@ -1,4 +1,4 @@
-function sortData = (data) => {
+const sortData = (data) => {
   if (data !== null && data !== undefined && data.length > 0) {
     const tempArray = data.map((element, index) => {
       const stopName = element.stop.name.toLowerCase()
@@ -46,7 +46,7 @@ function sortData = (data) => {
   return []
 }
 
-async function splitArray (data) {
+const splitArray = async (data) => {
   if (data !== undefined && data.length > 0) {
     const dataModified = data.map((e) => {
       const newStopObject = changeStopObject(mode, e)
@@ -57,7 +57,7 @@ async function splitArray (data) {
 			order: e.order,
 		}))
     const intermediateArray = await stopsRaw.reduce(
-			(acc: Intermediate[], item: Intermediate) => {
+			(acc, item) => {
 				const arr = acc.slice()
 				const i = arr.findIndex(
 					(x) => x.name === item.name && x.order === item.order
@@ -140,3 +140,18 @@ const sortCompressedArray = (compressedData) => {
 			}
 		})
 	}
+
+	exports.fetchData = async () => {
+			const sortedData = await sortData(data)
+			const compressedData =
+				sortedData && typeof sortedData === "object"
+					? await splitArray(await sortedData)
+					: []
+			const sortedCompressedData =
+				typeof compressedData === "object" &&
+				Array.isArray(compressedData) &&
+				(await compressedData.length) >= 1
+					? await sortCompressedArray(await compressedData)
+					: []
+			return await sortedCompressedData
+		}
