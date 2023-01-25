@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     duration: duration,
     remarks: true,
     language: language,
-    when: date ? new Date(date) : new Date()
+    when: date ? date : new Date()
   }
   if (query) {
     if (mode === "dep") {
