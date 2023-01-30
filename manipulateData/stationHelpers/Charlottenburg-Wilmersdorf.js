@@ -2,6 +2,10 @@ exports.getAdenauerplatz = () => {
 	return ["U Adenauerplatz", 1]
 }
 
+exports.getAugsburgerStr = () => {
+  return ["U Augsburger Str.", 1]
+}
+
 exports.getBerlinerStr = (lineName) => {
 	switch (lineName) {
 		case "U7":
@@ -54,6 +58,14 @@ exports.getCharlottenburg = (product) => {
 	}
 }
 
+exports.getDeutscheOper = () => {
+  return ["U Deutsche Oper", 1]
+}
+
+exports.getErnstReuterPlatz = () => {
+  return ["U Ernst-Reuter-Platz", 1]
+}
+
 exports.getFehrbellinerPlatz = (lineName: string) => {
 	switch (lineName) {
 		case "U1":
@@ -101,6 +113,10 @@ exports.getHeidelbergerPlatz = (product) => {
 
 exports.getHohenzollerndamm = () => {
   return ["S Hohenzollerndamm", 1]
+}
+
+exports.getHohenzollernplatz = () => {
+  return ["U Hohenzollernplatz", 1]
 }
 
 exports.getJakobKaiserPlatz = () => {
@@ -155,8 +171,16 @@ exports.getMierendorffplatz = () => {
 	return ["U Mierendorffplatz", 1]
 }
 
+exports.getNeuWestend = () => {
+  return ["U Neu-Westend", 1]
+}
+
 exports.getOlympiastadion = () => {
   return ["S Olympiastadion", 1]
+}
+
+exports.getOlympiaStadion = () => {
+  return ["U Olympia-Stadion", 1]
 }
 
 exports.getPichelsberg = () => {
@@ -165,6 +189,18 @@ exports.getPichelsberg = () => {
 
 exports.getRichardWagnerPlatz = () => {
 	return ["U Richard-Wagner-Platz", 1]
+}
+
+exports.getRüdesheimerPlatz = () => {
+  return ["U Rüdesheimer Platz", 1]
+}
+
+exports.getRuhleben = () => {
+  return ["U Ruhleben", 1]
+}
+
+exports.getSophieCharlottePlatz = () => {
+  return ["U Sophie-Charlotte-Platz", 1]
 }
 
 exports.getSpichernstr = (lineName) => {
@@ -179,6 +215,14 @@ exports.getSpichernstr = (lineName) => {
 		default:
 			return ["U Spichernstr.", 3]
 	}
+}
+
+exports.getTheodorHeussPlatz = () => {
+  return ["U Theodor-Heuss-Platz", 1]
+}
+
+exports.getUhlandstr = () => {
+  return ["U Uhlandstr.", 1]
 }
 
 exports.getWestend = () => {
