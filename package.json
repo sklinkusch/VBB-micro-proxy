@@ -6,7 +6,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "micro",
-		"dev": "nodemon --exec 'micro -p 3001' -w index.js"
+		"dev": "nodemon --exec 'micro' -w index.js"
 	},
 	"keywords": [
 		"proxy",
