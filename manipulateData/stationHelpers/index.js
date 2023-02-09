@@ -67,7 +67,19 @@ const {
 	getWarschauerStr,
 	getWeberwiese
 } = require("./Friedrichshain-Kreuzberg")
-const { getLichtenberg } = require("./Lichtenberg")
+const { 
+	getBetriebsbfRummelsburg,
+	getFriedrichsfelde,
+	getGehrenseestr,
+	getHohenschönhausen,
+	getKarlshorst,
+	getLichtenberg,
+	getMagdalenenstr,
+	getNöldnerplatz,
+	getRummelsburg,
+	getTierpark,
+	getWartenberg
+} = require("./Lichtenberg")
 const { getWuhletal } = require("./Marzahn-Hellersdorf")
 const {
 	getAlex,
@@ -202,6 +214,10 @@ const changeStationObject = (mode, oldStopObject) => {
 				;[newStopName, order] = getBernauerStr()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
+			case "900000160002":
+				;[newStopName, order] = getBetriebsbfRummelsburg()
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
 			case "900000002201":
 				;[newStopName, order] = getBirkenstr()
 				newStop = { ...stop, name: newStopName }
@@ -265,12 +281,20 @@ const changeStationObject = (mode, oldStopObject) => {
 				;[newStopName, order] = getFranzNeumannPlatz()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
+      case "900000161512":
+        ;[newStopName, order] = getFriedrichsfelde()
+        newStop = { ...stop, name: newStopName }
+        return { ...oldStopObject, stop: newStop, order }
+      case "900000100001":
+        ;[newStopName, order] = getFriedrichstr(product, lineName)
+        newStop = { ...stop, name: newStopName }
+        return { ...oldStopObject, stop: newStop, order }
 			case "900000061102":
 				;[newStopName, order] = getFriedrichWilhelmPlatz()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
-			case "900000100001":
-				;[newStopName, order] = getFriedrichstr(product, lineName)
+			case "900000152002":
+				;[newStopName, order] = getGehrenseestr()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
 			case "900000007102":
@@ -341,6 +365,10 @@ const changeStationObject = (mode, oldStopObject) => {
 				;[newStopName, order] = getHermannstr(product)
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
+			case "900000152001":
+				;[newStopName, order] = getHohenschönhausen(product)
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
       case "900000044101":
         ;[newStopName, order] = getHohenzollerndamm()
         newStop = { ...stop, name: newStopName }
@@ -375,6 +403,10 @@ const changeStationObject = (mode, oldStopObject) => {
 				return { ...oldStopObject, stop: newStop, order }
 			case "900000096458":
 				;[newStopName, order] = getKarlBonhoefferNervenklinik(product)
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
+			case "900000162001":
+				;[newStopName, order] = getKarlshorst(product)
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
 			case "900000078103":
@@ -426,6 +458,10 @@ const changeStationObject = (mode, oldStopObject) => {
 				;[newStopName, order] = getLipschitzallee()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
+      case "900000160005":
+        ;[newStopName, order] = getMagdalenenstr()
+        newStop = { ...stop, name: newStopName }
+        return { ...oldStopObject, stop: newStop, order }
 			case "900000017101":
 				;[newStopName, order] = getMehringdamm()
 				newStop = { ...stop, name: newStopName }
@@ -467,6 +503,10 @@ const changeStationObject = (mode, oldStopObject) => {
         ;[newStopName, order] = getNeuWestend()
         newStop = { ...stop, name: newStopName }
         return { ...oldStopObject, stop: newStop, order }
+			case "900000160003":
+				;[newStopName, order] = getNöldnerplatz()
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
 			case "900000056102":
 				;[newStopName, order] = getNollendorfplatz(
 					mode,
@@ -586,6 +626,10 @@ const changeStationObject = (mode, oldStopObject) => {
         ;[newStopName, order] = getRuhleben()
         newStop = { ...stop, name: newStopName }
         return { ...oldStopObject, stop: newStop, order }
+			case "900000160001":
+				;[newStopName, order] = getRummelsburg()
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
 			case "900000120009":
 				;[newStopName, order] = getSamariterstr()
 				newStop = { ...stop, name: newStopName }
@@ -642,7 +686,11 @@ const changeStationObject = (mode, oldStopObject) => {
         ;[newStopName, order] = getTheodorHeussPlatz()
         newStop = { ...stop, name: newStopName }
         return { ...oldStopObject, stop: newStop, order }
-			case "900000003104":
+			case "900000161002":
+				;[newStopName, order] = getTierpark()
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
+ 			case "900000003104":
 				;[newStopName, order] = getTurmstr()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
@@ -668,6 +716,10 @@ const changeStationObject = (mode, oldStopObject) => {
 				return { ...oldStopObject, stop: newStop, order }
 			case "900000120004":
 				;[newStopName, order] = getWarschauerStr(product)
+				newStop = { ...stop, name: newStopName }
+				return { ...oldStopObject, stop: newStop, order }
+			case "900000151001":
+				;[newStopName, order] = getWartenberg()
 				newStop = { ...stop, name: newStopName }
 				return { ...oldStopObject, stop: newStop, order }
 			case "900000120025":
