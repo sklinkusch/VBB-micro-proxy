@@ -1,15 +1,9 @@
 {
-  "prettier.enableDebugLogs": false,
-  "prettier.semi": true,
-  "prettier.trailingComma": "none",
-  "prettier.printWidth": 80,
-  "prettier.tabWidth": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "prettier.useEditorConfig": false,
   "prettier.useTabs": false,
-  "prettier.singleQuote": false,
-  "prettier.bracketSpacing": true,
-  "prettier.bracketSameLine": true,
-  "prettier.arrowParens": "always",
-  "prettier.requirePragma": false,
-  "prettier.htmlWhitespaceSensitivity": "css",
-  "prettier.endOfLine": "lf"
+  "prettier.configPath": ".prettierrc.json",
+  "prettier.enableDebugLogs": false
 }
