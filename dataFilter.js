@@ -1,4 +1,6 @@
 const filterProducts = (data, products) => {
+  console.log(data);
+  console.log(products);
   const productsArray = products.split("");
   const modProductsArray = productsArray.map((item) => {
     return item === "1" ? true : false;
