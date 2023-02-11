@@ -6,7 +6,7 @@ require("now-env");
 // const client = createClient(vbbProfile, "vbbMicro");
 const createHafas = require("vbb-hafas");
 const hafas = createHafas("my-awesome-program");
-const filterProducts = require("./productFilter");
+const { filterProducts, lineFilter } = require("./dataFilter");
 
 const { parse } = require("url");
 const { send } = require("micro");
@@ -32,7 +32,6 @@ module.exports = async (req, res) => {
     language: language,
     when: date ? date : new Date(),
     direction: direction,
-    line: line,
     results: results
   };
   if (query) {
@@ -40,6 +39,7 @@ module.exports = async (req, res) => {
       hafas
         .departures(station, options)
         .then((data) => filterProducts(data, products))
+        .then((data) => lineFilter(data, line))
         .then((data) => send(res, 200, data))
         .catch((error) => send(res, 500, error));
       // client
@@ -50,6 +50,7 @@ module.exports = async (req, res) => {
       hafas
         .arrivals(station, options)
         .then((data) => filterProducts(data, products))
+        .then((data) => lineFilter(data, line))
         .then((data) => send(res, 200, data))
         .catch((error) => send(res, 500, error));
       // client

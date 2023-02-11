@@ -27,4 +27,20 @@ const filterProducts = (data, products) => {
   return returnData;
 };
 
-module.exports = filterProducts;
+const lineFilter = (data, lines) => {
+  const lineArray = lines.split(",");
+  const smallLineArray = lineArray.map((singleLine) =>
+    singleLine.toLowerCase()
+  );
+  if (smallLineArray.length > 0) {
+    const returnData = data.filter((dataset) => {
+      const currentLine = dataset.line.name.toLowerCase();
+      return smallLineArray.includes(currentLine);
+    });
+    return returnData;
+  } else {
+    return data;
+  }
+};
+
+module.exports = { filterProducts, lineFilter };
