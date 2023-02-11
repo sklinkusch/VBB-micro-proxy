@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     language = "de",
     date = null,
     direction = null,
-    line = null,
+    line = "",
     results = null,
     products = "1111111"
   } = parseQueryString(query);
