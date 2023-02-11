@@ -4,15 +4,26 @@ require("now-env");
 // const createClient = require("hafas-client");
 // const vbbProfile = require("hafas-client/p/vbb");
 // const client = createClient(vbbProfile, "vbbMicro");
-const createHafas = require("vbb-hafas")
-const hafas = createHafas("my-awesome-program")
+const createHafas = require("vbb-hafas");
+const hafas = createHafas("my-awesome-program");
+const filterProducts = require("./productFilter");
 
 const { parse } = require("url");
 const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const { station, duration = 60, mode = "dep", language = 'de', date = null, direction = null, line = null, results = null } = parseQueryString(query);
+  const {
+    station,
+    duration = 60,
+    mode = "dep",
+    language = "de",
+    date = null,
+    direction = null,
+    line = null,
+    results = null,
+    products = "1111111"
+  } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   const options = {
@@ -23,13 +34,14 @@ module.exports = async (req, res) => {
     direction: direction,
     line: line,
     results: results
-  }
+  };
   if (query) {
     if (mode === "dep") {
       hafas
         .departures(station, options)
-        .then(data => send(res, 200, data))
-        .catch(error => send(res, 500, error))
+        .then((data) => filterProducts(data, products))
+        .then((data) => send(res, 200, data))
+        .catch((error) => send(res, 500, error));
       // client
       //   .departures(station, { duration: duration })
       //   .then(data => send(res, 200, data))
@@ -37,8 +49,9 @@ module.exports = async (req, res) => {
     } else {
       hafas
         .arrivals(station, options)
-        .then(data => send(res, 200, data))
-        .catch(error => send(res, 500, error))
+        .then((data) => filterProducts(data, products))
+        .then((data) => send(res, 200, data))
+        .catch((error) => send(res, 500, error));
       // client
       //   .arrivals(station, { duration: duration })
       //   .then(data => send(res, 200, data))
@@ -49,7 +62,7 @@ module.exports = async (req, res) => {
   }
 };
 
-const parseQueryString = function(queryString) {
+const parseQueryString = function (queryString) {
   const params = {};
   const queries = queryString.split("&");
   for (let i = 0; i < queries.length; i++) {
