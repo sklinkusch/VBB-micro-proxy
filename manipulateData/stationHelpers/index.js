@@ -102,6 +102,7 @@ const {
   getWuhletal
 } = require("./Marzahn-Hellersdorf");
 const {
+  getAfrikanischeStr,
   getAlex,
   getAmrumerStr,
   getBellevue,
@@ -109,22 +110,38 @@ const {
   getBeusselstr,
   getBirkenstr,
   getBrandenburgerTor,
+  getBundestag,
   getFriedrichstr,
   getGesundbrunnen,
   getHackescherMarkt,
   getHansaplatz,
   getHauptbahnhof,
+  getHausvogteiplatz,
   getHeinrichHeineStr,
   getHumboldthain,
   getJannowitzbrücke,
+  getKlosterstr,
+  getKurfürstenstr,
   getLeopoldplatz,
+  getMärkischesMuseum,
+  getMohrenstr,
+  getMuseumsinsel,
+  getNaturkundemuseum,
   getNauenerPlatz,
   getNordbahnhof,
   getOranienburgerStr,
+  getOranienburgerTor,
   getOsloerStr,
   getPankstr,
   getPotsdamerPlatz,
+  getRehberge,
+  getReinickendorferStr,
   getRosenthalerPlatz,
+  getRotesRathaus,
+  getSchillingstr,
+  getSchwartzkopffstr,
+  getSeestr,
+  getSpittelmarkt,
   getStadtmitte,
   getTiergarten,
   getTurmstr,
@@ -132,24 +149,7 @@ const {
   getVoltastr,
   getWedding,
   getWeinmeisterstr,
-  getWesthafen,
-  getHausvogteiplatz,
-  getKlosterstr,
-  getMärkischesMuseum,
-  getMohrenstr,
-  getMuseumsinsel,
-  getNaturkundemuseum,
-  getOranienburgerTor,
-  getRotesRathaus,
-  getSchillingstr,
-  getSchwartzkopffstr,
-  getSpittelmarkt,
-  getBundestag,
-  getKurfürstenstr,
-  getAfrikanischeStr,
-  getRehberge,
-  getReinickendorferStr,
-  getSeestr
+  getWesthafen
 } = require("./Mitte");
 const {
   getBlaschkoallee,
@@ -160,12 +160,15 @@ const {
   getHermannstr,
   getJohannisthalerChaussee,
   getKarlMarxStr,
+  getKöllnischeHeide,
   getLeinestr,
   getLipschitzallee,
   getNeukölln,
   getParchimerAllee,
   getRathausNeukölln,
   getRudow,
+  getSonnenallee,
+  getWutzkyallee,
   getZwickauerDamm
 } = require("./Neukölln");
 const { getPankow, getSchönhauserAllee } = require("./Pankow");
@@ -558,6 +561,10 @@ const changeStationObject = (mode, oldStopObject) => {
         [newStopName, order] = getKochstr();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
+      case "900000077155":
+        [newStopName, order] = getKöllnischeHeide();
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
       case "900000041201":
         [newStopName, order] = getKonstanzerStr();
         newStop = { ...stop, name: newStopName };
@@ -871,6 +878,10 @@ const changeStationObject = (mode, oldStopObject) => {
         [newStopName, order] = getSiemensdamm();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
+      case "900000077106":
+        [newStopName, order] = getSonnenallee();
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
       case "900000022101":
         [newStopName, order] = getSophieCharlottePlatz();
         newStop = { ...stop, name: newStopName };
@@ -973,6 +984,8 @@ const changeStationObject = (mode, oldStopObject) => {
         return { ...oldStopObject, stop: newStop, order };
       case "900000024102":
         [newStopName, order] = getWestkreuz(lineName);
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
       case "900000070101":
         [newStopName, order] = getWestphalweg();
         newStop = { ...stop, name: newStopName };
@@ -984,6 +997,10 @@ const changeStationObject = (mode, oldStopObject) => {
         return { ...oldStopObject, stop: newStop, order };
       case "900000175001":
         [newStopName, order] = getWuhletal(product);
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
+      case "900000083102":
+        [newStopName, order] = getWutzkyallee();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
       case "900000057102":
