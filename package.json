@@ -1,30 +1,31 @@
 {
-	"name": "vbb-micro-proxy",
-	"private": true,
-	"version": "1.0.0",
-	"description": "proxy to fetch VBB data without CORS errors",
-	"main": "index.js",
-	"scripts": {
-		"start": "micro",
-		"dev": "nodemon --exec 'micro' -w index.js"
-	},
-	"keywords": [
-		"proxy",
-		"VBB",
-		"CORS"
-	],
-	"author": "Stefan Klinkusch",
-	"license": "MIT",
-	"devDependencies": {
-		"eslint": "^8.36.0",
-		"nodemon": "^2.0.19",
-		"prettier": "^2.8.4"
-	},
-	"dependencies": {
-		"hafas-client": "^6.0.1",
-		"isomorphic-fetch": "^3.0.0",
-		"micro": "^10.0.1",
-		"now-env": "^3.1.0",
-		"vbb-hafas": "^7.0.4"
-	}
+  "name": "vbb-micro-proxy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "proxy to fetch VBB data without CORS errors",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro",
+    "dev": "nodemon --exec 'micro' -w index.js",
+    "lint:all": "eslint . --ext .js"
+  },
+  "keywords": [
+    "proxy",
+    "VBB",
+    "CORS"
+  ],
+  "author": "Stefan Klinkusch",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.8.4"
+  },
+  "dependencies": {
+    "hafas-client": "^6.0.1",
+    "isomorphic-fetch": "^3.0.0",
+    "micro": "^10.0.1",
+    "now-env": "^3.1.0",
+    "vbb-hafas": "^7.0.4"
+  }
 }
