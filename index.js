@@ -1,5 +1,7 @@
 require("isomorphic-fetch");
 require("now-env");
+const express = require("express");
+const app = express();
 
 // const createClient = require("hafas-client");
 // const vbbProfile = require("hafas-client/p/vbb");
@@ -8,11 +10,16 @@ const createHafas = require("vbb-hafas");
 const hafas = createHafas("my-awesome-program");
 const { filterProducts, lineFilter } = require("./dataFilter");
 
-const { parse } = require("url");
-const { send } = require("micro");
+// specify port for development
+const port = 3500;
 
-module.exports = async (req, res) => {
-  const { query } = parse(req.url);
+app.use("*", (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Type", "application/json");
+    next();
+});
+
+app.get("/", (req, res) => {
   const {
     station,
     duration = 60,
@@ -23,9 +30,7 @@ module.exports = async (req, res) => {
     line = "",
     results = null,
     products = "1111111"
-  } = parseQueryString(query);
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Content-Type", "application/json");
+  } = req.query;
   const options = {
     duration: duration,
     remarks: true,
@@ -34,41 +39,26 @@ module.exports = async (req, res) => {
     direction: direction,
     results: results
   };
-  if (query) {
-    if (mode === "dep") {
-      hafas
-        .departures(station, options)
-        .then((data) => filterProducts(data, products))
-        .then((data) => lineFilter(data, line))
-        .then((data) => send(res, 200, data))
-        .catch((error) => send(res, 500, error));
-      // client
-      //   .departures(station, { duration: duration })
-      //   .then(data => send(res, 200, data))
-      //   .catch(error => send(res, 500, error));
-    } else {
-      hafas
-        .arrivals(station, options)
-        .then((data) => filterProducts(data, products))
-        .then((data) => lineFilter(data, line))
-        .then((data) => send(res, 200, data))
-        .catch((error) => send(res, 500, error));
-      // client
-      //   .arrivals(station, { duration: duration })
-      //   .then(data => send(res, 200, data))
-      //   .catch(error => send(res, 500, error))
-    }
+  if (mode === "dep") {
+    hafas
+    .departures(station, options)
+    .then((data) => filterProducts(data))
+    .then((data) => lineFilter(data))
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json(error))
   } else {
-    send(res, 200, '{"result":"No departure provided"}');
+    hafas
+    .arrivals(station, options)
+    .then((data) => filterProducts(data))
+    .then((data) => lineFilter(data))
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json(error))
   }
-};
+});
 
-const parseQueryString = function (queryString) {
-  const params = {};
-  const queries = queryString.split("&");
-  for (let i = 0; i < queries.length; i++) {
-    const temp = queries[i].split("=");
-    params[temp[0]] = temp[1];
-  }
-  return params;
-};
+app.all('*', (req, res) => {
+  return res.status(404).json({ error: { message: 'This endpoint does not exist.' }});
+});
+
+// listening (for development)
+app.listen(port, () => {`Listening to requests on port ${port} ...`});
