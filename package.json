@@ -5,8 +5,9 @@
   "description": "proxy to fetch VBB data without CORS errors",
   "main": "index.js",
   "scripts": {
-    "start": "micro",
-    "dev": "nodemon --exec 'micro' -w index.js",
+    "dev": "nodemon index.js",
+    "build": "node index.js",
+    "start": "node index.js",
     "lint:all": "eslint . --ext .js"
   },
   "keywords": [
