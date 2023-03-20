@@ -2,7 +2,7 @@ exports.getAfrikanischeStr = () => {
   return ["U Afrikanische Str.", 1];
 };
 
-exports.getAlex = (id, product, lineName) => {
+exports.getAlex = (id, product) => {
   switch (id) {
     case "900000100003":
       switch (product) {
