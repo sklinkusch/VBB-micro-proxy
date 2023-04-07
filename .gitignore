@@ -66,3 +66,6 @@ yarn.lock
 
 # vscode settings
 .vscode
+
+# transcoded files
+dist

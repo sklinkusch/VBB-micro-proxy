@@ -3,12 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "description": "proxy to fetch VBB data without CORS errors",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "build": "node index.js",
-    "start": "node index.js",
-    "lint:all": "eslint . --ext .js"
+    "dev": "nodemon index.mjs",
+    "build": "node --input-type=module index.mjs",
+    "start": "node --input-type=module index.mjs",
+    "lint:all": "eslint . --ext .mjs"
   },
   "keywords": [
     "proxy",
@@ -23,10 +24,12 @@
     "prettier": "^2.8.4"
   },
   "dependencies": {
-    "hafas-client": "^6.0.1",
-    "isomorphic-fetch": "^3.0.0",
+    "flatted": "^3.2.7",
     "express": "^4.18.2",
-    "now-env": "^3.1.0",
-    "vbb-hafas": "^7.0.4"
+    "hafas-client": "^6.0.3",
+    "vbb-hafas": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
