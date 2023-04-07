@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
         // .then((data) => filterProducts(data, products))
         // .then((data) => lineFilter(data, line))
         .then((data) => {
-          const jsonDep = stringify(json);
+          const jsonDep = stringify(data);
           return res.status(200).send(jsonDep);
         })
         .catch((error) => {
