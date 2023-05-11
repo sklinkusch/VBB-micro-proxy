@@ -212,12 +212,15 @@ const {
   getWittenau
 } = require("./Reinickendorf");
 const {
+  getAlbrechtshof,
   getAltstadtSpandau,
   getHaselhorst,
   getPaulsternstr,
   getRathausSpandau,
   getRohrdamm,
   getSiemensdamm,
+  getStaaken,
+  getStresow,
   getZitadelle
 } = require("./Spandau");
 const { getRathausSteglitz, getSchloßstr } = require("./Steglitz-Zehlendorf");
@@ -262,6 +265,10 @@ const changeStationObject = (mode, oldStopObject) => {
         return { ...oldStopObject, stop: newStop, order };
       case "900000170004":
         [newStopName, order] = getAhrensfelde();
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
+      case "900000037168":
+        [newStopName, order] = getAlbrechtshof();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
       case "900000100003":
@@ -1016,6 +1023,10 @@ const changeStationObject = (mode, oldStopObject) => {
         [newStopName, order] = getSpringpfuhl();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
+      case "900000029305":
+        [newStopName, order] = getStaaken();
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStopName, order };
       case "900000100011":
         [newStopName, order] = getStadtmitte(lineName);
         newStop = { ...stop, name: newStopName };
@@ -1026,6 +1037,10 @@ const changeStationObject = (mode, oldStopObject) => {
         return { ...oldStopObject, stop: newStop, order };
       case "900000120006":
         [newStopName, order] = getStrausbergerPlatz();
+        newStop = { ...stop, name: newStopName };
+        return { ...oldStopObject, stop: newStop, order };
+      case "900000030202":
+        [newStopName, order] = getStresow();
         newStop = { ...stop, name: newStopName };
         return { ...oldStopObject, stop: newStop, order };
       case "900000016202":
