@@ -20,7 +20,7 @@
   "devDependencies": {
     "eslint": "^8.36.0",
     "nodemon": "^2.0.19",
-    "prettier": "^2.8.4"
+    "prettier": "^3.0.0"
   },
   "dependencies": {
     "hafas-client": "^6.0.1",
